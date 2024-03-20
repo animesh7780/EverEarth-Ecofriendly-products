@@ -18,21 +18,25 @@ export const Navbar = () => {
                     <Link style={{ textDecoration: 'none' }} to="/">Shop</Link>
                     {menu === "shop" && <hr />}
                 </li>
-                <li onClick={() => setMenu("mens")}>
-                    <Link style={{ textDecoration: 'none' }} to='/mens'>Daily</Link>
-                    {menu === "mens" && <hr />}
+                <li onClick={() => setMenu("everyday")}>
+                    <Link style={{ textDecoration: 'none' }} to='/everyday'>EveryDay</Link>
+                    {menu === "everyday" && <hr />}
                 </li>
-                <li onClick={() => setMenu("womens")}>
-                    <Link style={{ textDecoration: 'none' }} to="/womens">Cosmetics</Link>
-                    {menu === "womens" && <hr />}
+                <li onClick={() => setMenu("toiletries")}>
+                    <Link style={{ textDecoration: 'none' }} to="/toiletries">Toiletries</Link>
+                    {menu === "toiletries" && <hr />}
                 </li>
-                <li onClick={() => setMenu("kids")}>
-                    <Link style={{ textDecoration: 'none' }} to="/kids">Niche</Link>
-                    {menu === "kids" && <hr />}
+                <li onClick={() => setMenu("greendevices")}>
+                    <Link style={{ textDecoration: 'none' }} to="/greendevices">Green Devices</Link>
+                    {menu === "greendevices" && <hr />}
                 </li>
                 <li onClick={() => setMenu("trulyhead")}>
                     <Link style={{ textDecoration: 'none' }} to="/trulyhead">Truly Head</Link>
                     {menu === "trulyhead" && <hr />}
+                </li>
+                <li onClick={() => setMenu("furniture")}>
+                    <Link style={{ textDecoration: 'none' }} to="/furniture">Furniture</Link>
+                    {menu === "furniture" && <hr />}
                 </li>
             </ul>
             <div className='nav-login-cart'>
