@@ -26,6 +26,10 @@
     font-weight: 700;
 }
 
+.tagline {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .hero-hand-icon {
     display: flex;
     align-items: center;
