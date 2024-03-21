@@ -1,0 +1,57 @@
+/* Popular Section */
+.popular {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    min-height: 90vh;
+    padding: 50px 20px;
+}
+
+.popular h1 {
+    color: #171717;
+    font-size: 3.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.popular hr {
+    width: 200px;
+    height: 4px;
+    border-radius: 10px;
+    background: #252525;
+}
+
+.popular-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.popular-item .item {
+    width: 250px; 
+    padding: 20px; 
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.popular-item .item:hover {
+    transform: translateY(-5px);
+}
+
+.popular-item .item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.popular-item .item p {
+    margin-top: 10px;
+    color: #666;
+    font-size: 1rem;
+    text-align: center;
+}
