@@ -1,0 +1,127 @@
+.offers {
+    height: 65%;
+    width: 60vh;
+    display: flex;
+    margin: auto;
+    padding: 0px, 140px;
+    margin-bottom: 150px;
+    background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
+}
+
+.offers-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.offers-left h1 {
+    color: #171717;
+    font-size: 80px;
+    font-weight: 600;
+
+}
+
+.offers-left p {
+    color: #171717;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.offers-left button {
+    width: 282px;
+    height: 70px;
+    border-radius: 35px;
+    background: #ff4141;
+    border: none;
+    color: white;
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 30px;
+
+    .offers {
+        height: 65%;
+        width: 60vh;
+        display: flex;
+        margin: auto;
+        padding: 0px 140px;
+        margin-bottom: 150px;
+        background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
+        border-radius: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .offers-left {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 50px;
+    }
+
+    .offers-left h1 {
+        color: #171717;
+        font-size: 4rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .offers-left p {
+        color: #171717;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 40px;
+    }
+
+    .offers-left button {
+        width: 282px;
+        height: 70px;
+        border-radius: 35px;
+        background: #ff4141;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .offers-left button:hover {
+        background-color: #ff3333;
+    }
+
+    .offers-right {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+
+    .offers:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.1), transparent);
+        z-index: 1;
+    }
+
+    .offers-left,
+    .offers-right {
+        position: relative;
+        z-index: 2;
+    }
+
+    cursor: pointer;
+
+}
+
+.offers-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 50px;
+}
