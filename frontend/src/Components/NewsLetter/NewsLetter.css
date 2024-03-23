@@ -1,5 +1,5 @@
 .newsletter {
-    background-color: #fde1ff;
+    background-color: #80ed99;
     padding: 50px;
     text-align: center;
     border-radius: 10px;
@@ -29,7 +29,7 @@
     width: 300px;
     height: 50px;
     padding: 10px;
-    border: 2px solid #ff4141;
+    border: none;
     border-radius: 25px;
     outline: none;
     font-size: 1rem;
@@ -49,10 +49,10 @@
     border-radius: 25px;
     font-size: 1.2rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.25s;
 }
 
 .newsletter button:hover {
-    background-color: #ff3333;
+    background-color: #590d22;
     /* Darker shade on hover */
 }

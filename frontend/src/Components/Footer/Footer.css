@@ -1,5 +1,5 @@
 .footer {
-    background-color: #fde1ff;
+    background-color: #80ed99;
     padding: 50px 20px;
     text-align: center;
     border-top: 2px solid #ff4141;
@@ -41,7 +41,7 @@
     .footer-links li {
         display: inline-block;
         margin: 0 15px;
-        color: #626262;
+        color: black;
         font-size: 1.2rem;
     }
 
@@ -66,12 +66,11 @@
 
     .footer-copyright hr {
         border: none;
-        border-top: 2px solid #ff4141;
         margin-bottom: 10px;
     }
 
     .footer-copyright p {
-        color: #626262;
+        color: black;
         font-size: 1rem;
     }
 }

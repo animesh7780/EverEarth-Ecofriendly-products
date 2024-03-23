@@ -45,8 +45,8 @@
     height: 50px;
     padding: 0 30px;
     border-radius: 25px;
-    background: #ff4141;
-    color: #fde1ff;
+    background: #f4d35e;
+    color: black;
     font-size: 18px;
     font-weight: 500;
     text-decoration: none;
@@ -54,7 +54,7 @@
 }
 
 .hero-latest-btn:hover {
-    background: #e62929;
+    background: #ffbd00;
     transform: translateY(-3px);
 }
 

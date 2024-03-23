@@ -44,7 +44,7 @@
 }
 
 .nav-menu a:hover {
-    color: #ff4141;
+    color: #ffbd00;
 }
 
 .nav-menu hr {
@@ -87,13 +87,13 @@
 }
 
 .nav-login-cart button:hover {
-    background: #f3f3f3;
+    background: #f4d35e;
 }
 
 .nav-cart-count {
     position: absolute;
-    top: -8px;
-    right: -8px;
+    top: 10px;
+    right: 5px;
     height: 24px;
     min-width: 24px;
     border-radius: 50%;
@@ -105,6 +105,7 @@
     align-items: center;
     animation: bounceIn 1s ease-out;
 }
+
 
 
 @keyframes fadeIn {

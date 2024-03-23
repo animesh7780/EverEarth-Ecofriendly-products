@@ -8,8 +8,8 @@ export const Hero = () => {
         <div className='hero'>
             <div className='hero-left'>
                 <div className='tagline'>
-                    <p>The future is green.</p>
-                    <p>Shop it now.</p>
+                    <p>Green Is Future</p>
+                    <p>Shop it now</p>
                 </div>
                 <div className='hero-latest-btn'>
                     <div>Fresh Release</div>
