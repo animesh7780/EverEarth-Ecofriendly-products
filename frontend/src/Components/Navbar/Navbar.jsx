@@ -30,9 +30,9 @@ export const Navbar = () => {
                     <Link style={{ textDecoration: 'none' }} to="/greendevices">Green Devices</Link>
                     {menu === "greendevices" && <hr />}
                 </li>
-                <li onClick={() => setMenu("trulyhead")}>
-                    <Link style={{ textDecoration: 'none' }} to="/trulyhead">Truly Head</Link>
-                    {menu === "trulyhead" && <hr />}
+                <li onClick={() => setMenu("niche")}>
+                    <Link style={{ textDecoration: 'none' }} to="/niche">Niche</Link>
+                    {menu === "niche" && <hr />}
                 </li>
                 <li onClick={() => setMenu("furniture")}>
                     <Link style={{ textDecoration: 'none' }} to="/furniture">Furniture</Link>

@@ -33,6 +33,7 @@ export const Footer = () => {
             <div className='footer-copyright'>
                 <hr />
                 <p>&#169; 2024 - All Rights Reserved.</p>
+                <p>MAKE IN INDIA</p>
             </div>
         </div>
     );

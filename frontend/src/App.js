@@ -1,35 +1,41 @@
 import './App.css';
-import { Navbar } from './Components/Navbar/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './Components/Navbar/Navbar';
 import Shop from './Pages/Shop';
-import { ShopCategory } from './Pages/ShopCategory';
-import { Product } from './Pages/Product';
-import { Cart } from './Pages/Cart';
+import EveryDay from './Pages/EveryDay';
+import Toiletries from './Pages/Toiletries';
+import GreenDevices from './Pages/GreenDevices';
+import Niche from './Pages/Niche';
+import Furniture from './Pages/Furniture';
+import Product from './Pages/Product';
+import Cart from './Pages/Cart';
 import LoginSignup from './Pages/LoginSignup';
 import Footer from './Components/Footer/Footer';
-
+import everyday_banner from './Components/Assets/banner_everyday.png';
+import toiletries_banner from './Components/Assets/banner_toiletries.png';
+import greendevices_banner from './Components/Assets/banner_greendevices.png';
+import niche_banner from './Components/Assets/banner_niche.png';
+import furniture_banner from './Components/Assets/banner_furniture.png';
 
 function App() {
   return (
-    <div>
-      <Router>
+    <Router>
+      <div>
         <Navbar />
         <Routes>
           <Route path="/" element={<Shop />} />
-          <Route path="/everyday" element={<ShopCategory category="everyday" />} />
-          <Route path="/toiletries" element={<ShopCategory category="toiletries" />} />
-          <Route path="/greendevices" element={<ShopCategory category="greendevices" />} />
-          <Route path="/trulyhead" element={<ShopCategory category="trulyhead" />} />
-          <Route path="/furniture" element={<ShopCategory category="furniture" />} />
-          <Route path="/product" element={<Product />}>
-            <Route path=":productId" element={<Product />} />
-          </Route>
+          <Route path="/everyday" element={<EveryDay banner={everyday_banner} category="everyday" />} />
+          <Route path="/toiletries" element={<Toiletries banner={toiletries_banner} category="toiletries" />} />
+          <Route path="/greendevices" element={<GreenDevices banner={greendevices_banner} category="greendevices" />} />
+          <Route path="/niche" element={<Niche banner={niche_banner} category="niche" />} />
+          <Route path="/furniture" element={<Furniture banner={furniture_banner} category="furniture" />} />
+          <Route path="/product/:productId" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<LoginSignup />} />
         </Routes>
         <Footer />
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 }
 

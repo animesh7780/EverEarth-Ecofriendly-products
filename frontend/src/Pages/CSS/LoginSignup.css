@@ -1,0 +1,133 @@
+.loginsignup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.loginsignup-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.loginsignup-container:hover {
+    transform: scale(1.05);
+}
+
+.loginsignup h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333333;
+    transition: color 0.3s ease;
+}
+
+.loginsignup-fields input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.loginsignup-fields input:focus {
+    border-color: #007bff;
+}
+
+.loginsignup button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.loginsignup button:hover {
+    background-color: #0056b3;
+}
+
+.loginsignup-login {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #777777;
+    transition: color 0.3s ease;
+}
+
+.loginsignup-login span {
+    color: #007bff;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.loginsignup-login span:hover {
+    color: #0056b3;
+}
+
+.loginsignup-agree {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #777777;
+}
+
+.loginsignup-agree input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Additional animations/transitions */
+.loginsignup-container {
+    animation: slide-up 0.5s ease;
+}
+
+.loginsignup-container:hover {
+    transform: translateY(-10px);
+}
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.loginsignup button {
+    position: relative;
+    overflow: hidden;
+}
+
+.loginsignup button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+    border-radius: 50%;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+}
+
+.loginsignup button:hover::after {
+    width: 0;
+    height: 0;
+}
