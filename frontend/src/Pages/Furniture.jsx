@@ -1,6 +1,6 @@
 import React from 'react'
 import furniturepros from '../Components/Assets/furnitureproducts'
-import './CSS/Toiletries.css'
+import './CSS/Furniture.css'
 import Item from '../Components/Item/Item'
 import banner_furniture from '../Components/Assets/banner_furniture.png'
 

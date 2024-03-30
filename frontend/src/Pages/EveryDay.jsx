@@ -1,6 +1,6 @@
 import React from 'react'
 import EveryDaypros from '../Components/Assets/Everdayproducts'
-import './CSS/Toiletries.css'
+import './CSS/EveryDay.css'
 import Item from '../Components/Item/Item'
 import banner_EveryDay from '../Components/Assets/banner_everyday.png'
 

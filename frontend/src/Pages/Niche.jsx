@@ -1,6 +1,6 @@
 import React from 'react'
 import nichepros from '../Components/Assets/nicheproducts'
-import './CSS/Toiletries.css'
+import './CSS/Niche.css'
 import Item from '../Components/Item/Item'
 import banner_niche from '../Components/Assets/banner_niche.png'
 

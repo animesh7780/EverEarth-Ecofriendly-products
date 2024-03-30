@@ -1,0 +1,40 @@
+.newcollections hr {
+    width: 200px;
+    height: 4px;
+    border-radius: 10px;
+    background: #252525;
+}
+
+.collections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.collections .item {
+    width: 250px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.collections .item:hover {
+    transform: translateY(-5px);
+}
+
+.collections .item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.collections .item p {
+    margin-top: 10px;
+    color: #666;
+    font-size: 1rem;
+    text-align: center;
+}
