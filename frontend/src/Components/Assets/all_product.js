@@ -206,7 +206,7 @@ let all_product = [
   },
   {
     id: 22,
-    name: "Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
+    name: "Wooden Chair",
     category: "furniture",
     image: p22_img,
     new_price: 85.0,
