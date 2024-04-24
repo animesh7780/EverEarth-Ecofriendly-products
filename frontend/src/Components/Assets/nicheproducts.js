@@ -11,6 +11,7 @@ import p10_img from "./product_32.png";
 import p11_img from "./product_33.png";
 import p12_img from "./product_34.png";
 import p13_img from "./product_35.png";
+import p14_img from "./product_7.png";
 
 let niche = [
     {
@@ -101,6 +102,13 @@ let niche = [
         id: 36,
         name: "Vegan Jacket",
         image: p13_img,
+        new_price: 50.0,
+        old_price: 80.5,
+    },
+    {
+        id: 7,
+        name: "Vegan Jacket",
+        image: p14_img,
         new_price: 50.0,
         old_price: 80.5,
     },

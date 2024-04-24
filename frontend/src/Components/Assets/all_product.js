@@ -34,6 +34,32 @@ import p33_img from "./product_33.png";
 import p34_img from "./product_34.png";
 import p35_img from "./product_35.png";
 import p36_img from "./product_36.png";
+import p37_img from "./product_37.png";
+import p38_img from "./product_38.png";
+import p39_img from "./product_39.png";
+import p40_img from "./product_40.png";
+import p41_img from "./product_41.png";
+import p42_img from "./product_42.png";
+import p43_img from "./product_43.png";
+import p44_img from "./product_44.png";
+import p45_img from "./product_45.png";
+import p46_img from "./product_46.png";
+import p47_img from "./product_47.png";
+import p48_img from "./product_48.png";
+import p49_img from "./product_49.png";
+import p50_img from "./product_50.png";
+import p51_img from "./product_51.png";
+import p52_img from "./product_52.png";
+import p53_img from "./product_53.png";
+import p54_img from "./product_54.png";
+import p55_img from "./product_55.png";
+import p56_img from "./product_56.png";
+import p57_img from "./product_57.png";
+import p58_img from "./product_58.png";
+import p59_img from "./product_59.png";
+import p60_img from "./product_60.png";
+import p62_img from "./product_62.png";
+import p63_img from "./product_63.png";
 
 let all_product = [
   {
@@ -206,8 +232,8 @@ let all_product = [
   },
   {
     id: 22,
-    name: "Wooden Chair",
-    category: "furniture",
+    name: "Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
+    category: "niche",
     image: p22_img,
     new_price: 85.0,
     old_price: 120.5,
@@ -324,6 +350,202 @@ let all_product = [
     new_price: 85.0,
     old_price: 120.5,
   },
+  {
+    id: 37,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "furniture",
+    image: p37_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 38,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "furniture",
+    image: p38_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 39,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "furniture",
+    image: p39_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 40,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "furniture",
+    image: p40_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 41,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "furniture",
+    image: p41_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 42,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "furniture",
+    image: p42_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 43,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "furniture",
+    image: p43_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 44,
+    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    category: "everyday",
+    image: p44_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 45,
+    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    category: "everyday",
+    image: p45_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 46,
+    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    category: "everyday",
+    image: p46_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 47,
+    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    category: "everyday",
+    image: p47_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 48,
+    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    category: "everyday",
+    image: p48_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 49,
+    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    category: "everyday",
+    image: p49_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 50,
+    name: "Bamboo Keyboard",
+    image: p50_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 51,
+    name: "Bamboo Keyboard",
+    image: p51_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 52,
+    name: "Bamboo Keyboard",
+    image: p52_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 53,
+    name: "Bamboo Keyboard",
+    image: p53_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 54,
+    name: "Bamboo Keyboard",
+    image: p54_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 55,
+    name: "Bamboo Keyboard",
+    image: p55_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 56,
+    name: "Bamboo Keyboard",
+    image: p56_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 57,
+    name: "Vegan Jacket",
+    image: p57_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 58,
+    name: "Vegan Jacket",
+    image: p58_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 59,
+    name: "Vegan Jacket",
+    image: p59_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 60,
+    name: "Vegan Jacket",
+    image: p60_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 62,
+    name: "Vegan Jacket",
+    image: p62_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 63,
+    name: "Vegan Jacket",
+    image: p63_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+
 ];
 
 export default all_product;
