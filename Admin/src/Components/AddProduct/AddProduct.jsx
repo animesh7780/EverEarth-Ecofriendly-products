@@ -81,10 +81,10 @@ const AddProduct = () => {
                 <p>Product Category</p>
                 <select value={productDetails.category} onChange={changeHandler} name="category" className='add-product-selector' id="">
                     <option value="EveryDay">EveryDay</option>
-                    <option value="toiletries">Toiletries</option>
-                    <option value="greendevices">GreenDevices</option>
-                    <option value="niche">Niche</option>
-                    <option value="furniture">Furniture</option>
+                    <option value="Toiletries">Toiletries</option>
+                    <option value="Greendevices">GreenDevices</option>
+                    <option value="Niche">Niche</option>
+                    <option value="Furniture">Furniture</option>
                 </select>
             </div>
             <div className="adproduct-itemfeild">

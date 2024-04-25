@@ -41,6 +41,25 @@ import p40_img from "./product_40.png";
 import p41_img from "./product_41.png";
 import p42_img from "./product_42.png";
 import p43_img from "./product_43.png";
+import p44_img from "./product_44.png";
+import p45_img from "./product_45.png";
+import p46_img from "./product_46.png";
+import p47_img from "./product_47.png";
+import p48_img from "./product_48.png";
+import p49_img from "./product_49.png";
+import p50_img from "./product_50.png";
+import p51_img from "./product_51.png";
+import p52_img from "./product_52.png";
+import p53_img from "./product_53.png";
+import p54_img from "./product_54.png";
+import p55_img from "./product_55.png";
+import p56_img from "./product_56.png";
+import p57_img from "./product_57.png";
+import p58_img from "./product_58.png";
+import p59_img from "./product_59.png";
+import p60_img from "./product_60.png";
+import p62_img from "./product_62.png";
+import p63_img from "./product_63.png";
 
 let all_product = [
   {
@@ -386,6 +405,145 @@ let all_product = [
     image: p43_img,
     new_price: 85.0,
     old_price: 120.5,
+  },
+  {
+    id: 44,
+    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    category: "everyday",
+    image: p44_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 45,
+    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    category: "everyday",
+    image: p45_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 46,
+    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    category: "everyday",
+    image: p46_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 47,
+    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    category: "everyday",
+    image: p47_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 48,
+    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    category: "everyday",
+    image: p48_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 49,
+    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    category: "everyday",
+    image: p49_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+  {
+    id: 50,
+    name: "Bamboo Keyboard",
+    image: p50_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 51,
+    name: "Bamboo Keyboard",
+    image: p51_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 52,
+    name: "Bamboo Keyboard",
+    image: p52_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 53,
+    name: "Bamboo Keyboard",
+    image: p53_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 54,
+    name: "Bamboo Keyboard",
+    image: p54_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 55,
+    name: "Bamboo Keyboard",
+    image: p55_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 56,
+    name: "Bamboo Keyboard",
+    image: p56_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 57,
+    name: "Vegan Jacket",
+    image: p57_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 58,
+    name: "Vegan Jacket",
+    image: p58_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 59,
+    name: "Vegan Jacket",
+    image: p59_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 60,
+    name: "Vegan Jacket",
+    image: p60_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 62,
+    name: "Vegan Jacket",
+    image: p62_img,
+    new_price: 50.0,
+    old_price: 80.5,
+  },
+  {
+    id: 63,
+    name: "Vegan Jacket",
+    image: p63_img,
+    new_price: 50.0,
+    old_price: 80.5,
   },
 
 ];
