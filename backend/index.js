@@ -6,6 +6,8 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
+const { type } = require("os");
+const { error } = require("console");
 
 app.use(express.json());
 app.use(cors());
@@ -123,6 +125,87 @@ app.get('/allproducts', async (req, res) => {
     console.log("All Products Fetched");
     res.send(products);
 })
+
+
+
+// Schema for user model
+const User = mongoose.model('User', {
+    name: {
+        type: String,
+        required: true // Ensure name is required
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true // Ensure email is required
+    },
+    password: {
+        type: String,
+        required: true // Ensure password is required
+    },
+    cartData: {
+        type: Object,
+        default: {} // Default to an empty object for cartData
+    },
+    date: {
+        type: Date,
+        default: Date.now,
+    }
+});
+
+// Creating endpoint for registering a user
+app.post('/signup', async (req, res) => {
+    try {
+        // Check if a user with the same email already exists
+        let existingUser = await User.findOne({ email: req.body.email });
+        if (existingUser) {
+            return res.status(400).json({ success: false, errors: "User with the same email already exists" });
+        }
+
+        // Create a new user instance
+        const newUser = new User({
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password, // Store the hashed password
+        });
+
+        // Save the user to the database
+        await newUser.save();
+
+        // Generate JWT token for the user
+        const token = jwt.sign({ id: newUser.id }, 'secret_ecom');
+
+        // Respond with success and token
+        res.json({ success: true, token });
+    } catch (error) {
+        console.error("Error occurred during signup:", error);
+        res.status(500).json({ success: false, errors: "An error occurred during signup" });
+    }
+});
+
+app.post('/login', async (req, res) => {
+    try {
+        // Find user by email
+        const user = await User.findOne({ email: req.body.email });
+
+        if (!user) {
+            return res.status(400).json({ success: false, error: "Wrong Email Id" });
+        }
+
+        // Compare passwords (not recommended without bcrypt)
+        if (req.body.password !== user.password) {
+            return res.status(400).json({ success: false, error: "Wrong Password" });
+        }
+
+        // Generate JWT token for the user
+        const token = jwt.sign({ id: user.id }, 'secret_ecom');
+        res.json({ success: true, token });
+    } catch (error) {
+        console.error("Error occurred during login:", error);
+        res.status(500).json({ success: false, error: "An error occurred during login" });
+    }
+});
+
 
 app.listen(port, (error) => {
     if (!error) {
