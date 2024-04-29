@@ -206,6 +206,19 @@ app.post('/login', async (req, res) => {
     }
 });
 
+app.get('/newcollection', async (req, res) => {
+    let product = await Product.find({});
+    let newcollection = product.slice(1).slice(-8);
+    console.log("NewCollection Fetched");
+    res.send(newcollection);
+})
+app.get('/popular', async (req, res) => {
+    let product = await Product.find({ category: "toiletries" });
+    let popular = product.slice(0, 4);
+    console.log("Popular Fetched");
+    res.send(popular);
+})
+
 
 app.listen(port, (error) => {
     if (!error) {
