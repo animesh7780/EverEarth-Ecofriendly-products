@@ -218,6 +218,66 @@ app.get('/popular', async (req, res) => {
     console.log("Popular Fetched");
     res.send(popular);
 })
+app.get('/related', async (req, res) => {
+    let product = await Product.find({ category: "greendevices" });
+    let related = product.slice(0, 6);
+    console.log("related Fetched");
+    res.send(related);
+})
+
+// Middleware to fetch user information from JWT token
+const fetchUser = async (req, res, next) => {
+    const token = req.header('auth-token');
+    if (!token) {
+        return res.status(401).send({ errors: "Please authenticate using valid user" });
+    }
+    try {
+        const decoded = jwt.verify(token, 'secret_ecom');
+        req.user = decoded; // Attach decoded user information to request object
+        next(); // Move to the next middleware
+    } catch (error) {
+        console.error("Error occurred during user authentication:", error);
+        return res.status(401).send({ errors: "Invalid token" });
+    }
+};
+
+// Route to add a product to the user's cart
+// Route to add a product to the user's cart
+app.post('/addtocart', fetchUser, async (req, res) => {
+    try {
+        // Find the user in the database based on the decoded user ID
+        const userData = await User.findById(req.user.id);
+        if (!userData) {
+            return res.status(404).json({ success: false, errors: "User not found" });
+        }
+        // Update the user's cart data
+        userData.cartData[req.body.itemId] += 1;
+        await userData.save(); // Save the updated user data
+        res.send("Added to cart successfully");
+    } catch (error) {
+        console.error("Error occurred while adding to cart:", error);
+        res.status(500).json({ success: false, errors: "An error occurred while adding to cart" });
+    }
+});
+
+// Route to remove a product from the user's cart
+app.post('/removefromcart', fetchUser, async (req, res) => {
+    try {
+        // Find the user in the database based on the decoded user ID
+        const userData = await User.findById(req.user.id);
+        if (!userData) {
+            return res.status(404).json({ success: false, errors: "User not found" });
+        }
+        // Update the user's cart data
+        userData.cartData[req.body.itemId] -= 1;
+        if (userData.cartData[req.body.itemId] > 0)
+            await userData.save(); // Save the updated user data
+        res.send("Removed from cart successfully");
+    } catch (error) {
+        console.error("Error occurred while removing from cart:", error);
+        res.status(500).json({ success: false, errors: "An error occurred while removing from cart" });
+    }
+});
 
 
 app.listen(port, (error) => {
