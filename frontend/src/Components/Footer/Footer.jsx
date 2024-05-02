@@ -21,13 +21,19 @@ export const Footer = () => {
             </ul>
             <div className='footer-social-icon'>
                 <div className='footer-icons-container'>
-                    <img src={instagram_icon} alt='' />
+                    <a href='https://www.instagram.com/' target='_blank' rel='noopener noreferrer'>
+                        <img src={instagram_icon} alt='Instagram' />
+                    </a>
                 </div>
                 <div className='footer-icons-container'>
-                    <img src={pintrest_icon} alt='' />
+                    <a href='https://in.pinterest.com/' target='_blank' rel='noopener noreferrer'>
+                        <img src={pintrest_icon} alt='' />
+                    </a>
                 </div>
                 <div className='footer-icons-container'>
-                    <img src={whatsapp_icon} alt='' />
+                    <a href='https://www.instagram.com/' target='_blank' rel='noopener noreferrer'>
+                        <img src={whatsapp_icon} alt='' />
+                    </a>
                 </div>
             </div>
             <div className='footer-copyright'>

@@ -2,14 +2,10 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
 import Shop from './Pages/Shop';
-// import EveryDay from './Pages/EveryDay';
-// import Toiletries from './Pages/Toiletries';
-// import GreenDevices from './Pages/GreenDevices';
-// import Niche from './Pages/Niche';
-// import Furniture from './Pages/Furniture';
 import Product from './Pages/Product';
 import Cart from './Pages/Cart';
 import LoginSignup from './Pages/LoginSignup';
+import ThankYou from './Pages/ThankYou';
 import Footer from './Components/Footer/Footer';
 import { ShopCategory } from './Pages/ShopCategory'
 import everyday_banner from './Components/Assets/banner_everyday.png';
@@ -33,6 +29,7 @@ function App() {
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<LoginSignup />} />
+          <Route path="/thankyou" element={<ThankYou />} />
         </Routes>
         <Footer />
       </div>
