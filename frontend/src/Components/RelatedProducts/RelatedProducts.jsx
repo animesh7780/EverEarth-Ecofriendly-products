@@ -8,7 +8,7 @@ const RelatedProducts = () => {
     const [related_product, setrelated_product] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:4000/related')
+        fetch('https://everearth-backend.onrender.com/related')
             .then((response) => response.json())
             .then((data) => setrelated_product(data));
     }, [])
