@@ -75,11 +75,14 @@ app.post('/addproduct', upload.single('image'), async (req, res) => {
         let products = await Product.find({});
         let id = products.length > 0 ? products[products.length - 1].id + 1 : 1;
 
+        // Normalize category name to lowercase
+        const normalizedCategory = req.body.category.toLowerCase();
+
         const product = new Product({
             id,
             name: req.body.name,
             image: req.file.path, // Using Cloudinary URL
-            category: req.body.category,
+            category: normalizedCategory,
             new_price: req.body.new_price,
             old_price: req.body.old_price,
         });
@@ -102,7 +105,14 @@ app.post('/addproduct', upload.single('image'), async (req, res) => {
 app.get('/allproducts', async (req, res) => {
     try {
         const products = await Product.find({}).sort({ id: 1 });
-        res.json(products);
+        
+        // Normalize all category names to lowercase
+        const normalizedProducts = products.map(product => ({
+            ...product.toObject(),
+            category: product.category.toLowerCase()
+        }));
+        
+        res.json(normalizedProducts);
     } catch (error) {
         res.status(500).json({
             success: false,

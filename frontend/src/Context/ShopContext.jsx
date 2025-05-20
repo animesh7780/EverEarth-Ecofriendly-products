@@ -20,19 +20,32 @@ const ShopContextProvider = (props) => {
         const fetchProducts = async () => {
             try {
                 setLoading(true);
+                setError(null); // Clear any previous errors
                 const response = await fetch('https://everearth-backend.onrender.com/allproducts');
+                
                 if (!response.ok) {
-                    throw new Error('Failed to fetch products');
+                    throw new Error(`Failed to fetch products: ${response.status} ${response.statusText}`);
                 }
+                
                 const data = await response.json();
+                console.log('Fetched data:', data); // Debug log
+                
                 if (Array.isArray(data)) {
-                    setAll_Product(data);
+                    // Ensure all products have lowercase categories
+                    const normalizedProducts = data.map(product => ({
+                        ...product,
+                        category: product.category ? product.category.toLowerCase() : ''
+                    }));
+                    console.log('Normalized products:', normalizedProducts);
+                    setAll_Product(normalizedProducts);
                 } else {
-                    setAll_Product([]);
+                    console.error('Invalid data format:', data);
+                    throw new Error('Invalid data format received from server');
                 }
             } catch (err) {
                 console.error('Error fetching products:', err);
                 setError(err.message);
+                setAll_Product([]); // Clear products on error
             } finally {
                 setLoading(false);
             }
@@ -97,12 +110,14 @@ const ShopContextProvider = (props) => {
     };
 
     const contextValue = {
-        getTotalCartItems,
-        getTotalCartAmount,
         all_product,
         cartItems,
+        loading,
+        error,
         addToCart,
-        removeFromCart
+        removeFromCart,
+        getTotalCartAmount,
+        getTotalCartItems
     };
 
     return (

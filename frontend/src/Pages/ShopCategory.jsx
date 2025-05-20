@@ -7,13 +7,18 @@ import Item from '../Components/Item/Item';
 export const ShopCategory = (props) => { 
     const { all_product, loading, error } = useContext(ShopContext);
 
-    // Filter products by category (case-insensitive)
-    const categoryProducts = all_product.filter(item => 
-        item.category && item.category.toLowerCase() === props.category.toLowerCase()
+    // Ensure all_product is an array and category is lowercase
+    const products = Array.isArray(all_product) ? all_product : [];
+    const currentCategory = props.category.toLowerCase();
+
+    // Filter products by category
+    const categoryProducts = products.filter(item => 
+        item && item.category === currentCategory
     );
 
-    console.log('Category:', props.category);
-    console.log('Products:', categoryProducts);
+    console.log('Category:', currentCategory);
+    console.log('All products:', products);
+    console.log('Filtered products:', categoryProducts);
 
     if (loading) {
         return (
@@ -28,7 +33,16 @@ export const ShopCategory = (props) => {
         return (
             <div className='Shop-Category'>
                 <img className='banner' src={props.banner} alt='' />
-                <div className='error'>Error loading products: {error}</div>
+                <div className='error'>{error}</div>
+            </div>
+        );
+    }
+
+    if (!Array.isArray(all_product)) {
+        return (
+            <div className='Shop-Category'>
+                <img className='banner' src={props.banner} alt='' />
+                <div className='error'>Unable to load products. Please try again.</div>
             </div>
         );
     }
@@ -38,7 +52,7 @@ export const ShopCategory = (props) => {
             <img className='banner' src={props.banner} alt='' />
             <div className='shopcategory-indexSort'>
                 <p>
-                    <span>Showing {categoryProducts.length}</span> products in {props.category}
+                    <span>Showing {categoryProducts.length}</span> products in {currentCategory}
                 </p>
                 <div className='ShopCategory-sort'>
                     Sort by <img src={dropdown_icon} alt='' />
@@ -58,7 +72,7 @@ export const ShopCategory = (props) => {
                     ))
                 ) : (
                     <div className='no-products'>
-                        <p>No products available in {props.category}</p>
+                        <p>No products available in {currentCategory}</p>
                     </div>
                 )}
             </div>
