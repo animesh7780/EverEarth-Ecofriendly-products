@@ -6,6 +6,25 @@
     animation: fadeIn 0.5s forwards;
 }
 
+.Shop-Category .loading,
+.Shop-Category .error {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+}
+
+.Shop-Category .loading {
+    background-color: #f0f9ff;
+    color: #0369a1;
+}
+
+.Shop-Category .error {
+    background-color: #fef2f2;
+    color: #dc2626;
+}
+
 .Shop-Category img {
     width: 100%;
     border-radius: 8px;

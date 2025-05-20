@@ -13,11 +13,32 @@ const getDefaultCart = () => {
 const ShopContextProvider = (props) => {
     const [all_product, setAll_Product] = useState([]);
     const [cartItems, setCartItems] = useState(getDefaultCart());
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch('https://everearth-backend.onrender.com/allproducts')
-            .then((response) => response.json())
-            .then((data) => setAll_Product(data));
+        const fetchProducts = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch('https://everearth-backend.onrender.com/allproducts');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch products');
+                }
+                const data = await response.json();
+                if (data.success && Array.isArray(data.products)) {
+                    setAll_Product(data.products);
+                } else {
+                    setAll_Product([]);
+                }
+            } catch (err) {
+                console.error('Error fetching products:', err);
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProducts();
     }, []);
 
     const addToCart = (itemId) => {
