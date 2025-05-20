@@ -7,13 +7,18 @@ import Item from '../Components/Item/Item';
 export const ShopCategory = (props) => { 
     const { all_product, loading, error } = useContext(ShopContext);
 
-    // Filter products by category
-    const categoryProducts = all_product.filter(item => item.category === props.category);
+    // Filter products by category (case-insensitive)
+    const categoryProducts = all_product.filter(item => 
+        item.category && item.category.toLowerCase() === props.category.toLowerCase()
+    );
+
+    console.log('Category:', props.category);
+    console.log('Products:', categoryProducts);
 
     if (loading) {
         return (
             <div className='Shop-Category'>
-                <img src={props.banner} alt='' />
+                <img className='banner' src={props.banner} alt='' />
                 <div className='loading'>Loading products...</div>
             </div>
         );
@@ -22,7 +27,7 @@ export const ShopCategory = (props) => {
     if (error) {
         return (
             <div className='Shop-Category'>
-                <img src={props.banner} alt='' />
+                <img className='banner' src={props.banner} alt='' />
                 <div className='error'>Error loading products: {error}</div>
             </div>
         );
@@ -30,10 +35,10 @@ export const ShopCategory = (props) => {
 
     return (
         <div className='Shop-Category'>
-            <img src={props.banner} alt='' />
+            <img className='banner' src={props.banner} alt='' />
             <div className='shopcategory-indexSort'>
                 <p>
-                    <span>Showing {categoryProducts.length}</span> products
+                    <span>Showing {categoryProducts.length}</span> products in {props.category}
                 </p>
                 <div className='ShopCategory-sort'>
                     Sort by <img src={dropdown_icon} alt='' />
@@ -52,7 +57,9 @@ export const ShopCategory = (props) => {
                         />
                     ))
                 ) : (
-                    <p>No products available in this category</p>
+                    <div className='no-products'>
+                        <p>No products available in {props.category}</p>
+                    </div>
                 )}
             </div>
         </div>

@@ -25,8 +25,8 @@ const ShopContextProvider = (props) => {
                     throw new Error('Failed to fetch products');
                 }
                 const data = await response.json();
-                if (data.success && Array.isArray(data.products)) {
-                    setAll_Product(data.products);
+                if (Array.isArray(data)) {
+                    setAll_Product(data);
                 } else {
                     setAll_Product([]);
                 }

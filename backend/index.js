@@ -101,11 +101,8 @@ app.post('/addproduct', upload.single('image'), async (req, res) => {
 // Get all products
 app.get('/allproducts', async (req, res) => {
     try {
-        const products = await Product.find({});
-        res.json({
-            success: true,
-            products
-        });
+        const products = await Product.find({}).sort({ id: 1 });
+        res.json(products);
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -117,11 +114,37 @@ app.get('/allproducts', async (req, res) => {
 // Get products by category
 app.get('/products/:category', async (req, res) => {
     try {
-        const products = await Product.find({ category: req.params.category });
-        res.json({
-            success: true,
-            products
+        const category = req.params.category.toLowerCase();
+        const products = await Product.find({ 
+            category: { $regex: new RegExp('^' + category + '$', 'i') } 
+        }).sort({ id: 1 });
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message
         });
+    }
+});
+
+// Get new collection
+app.get('/newcollection', async (req, res) => {
+    try {
+        const products = await Product.find().sort({ date: -1 }).limit(8);
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
+// Get popular products
+app.get('/popular', async (req, res) => {
+    try {
+        const products = await Product.find({ category: 'toiletries' }).limit(4);
+        res.json(products);
     } catch (error) {
         res.status(500).json({
             success: false,
