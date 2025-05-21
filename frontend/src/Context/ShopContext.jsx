@@ -13,51 +13,44 @@ const getDefaultCart = () => {
 const ShopContextProvider = (props) => {
     const [all_product, setAll_Product] = useState([]);
     const [cartItems, setCartItems] = useState(getDefaultCart());
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('auth-token'));
+
+    useEffect(() => {
+        setIsLoggedIn(!!localStorage.getItem('auth-token'));
+    }, []);
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                setLoading(true);
-                setError(null); // Clear any previous errors
-                const response = await fetch('https://everearth-backend.onrender.com/allproducts');
-                
+                const response = await fetch('http://localhost:4000/allproducts');
                 if (!response.ok) {
-                    throw new Error(`Failed to fetch products: ${response.status} ${response.statusText}`);
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                
                 const data = await response.json();
-                console.log('Fetched data:', data); // Debug log
-                
-                if (Array.isArray(data)) {
-                    // Ensure all products have lowercase categories
-                    const normalizedProducts = data.map(product => ({
-                        ...product,
-                        category: product.category ? product.category.toLowerCase() : ''
-                    }));
-                    console.log('Normalized products:', normalizedProducts);
-                    setAll_Product(normalizedProducts);
-                } else {
-                    console.error('Invalid data format:', data);
-                    throw new Error('Invalid data format received from server');
+                if (!Array.isArray(data)) {
+                    if (data.success === false) {
+                        throw new Error(data.error || 'Failed to fetch products');
+                    }
+                    throw new Error('Expected array of products');
                 }
-            } catch (err) {
-                console.error('Error fetching products:', err);
-                setError(err.message);
-                setAll_Product([]); // Clear products on error
-            } finally {
-                setLoading(false);
+                setAll_Product(data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+                setAll_Product([]); // Set empty array on error
             }
         };
-
+        
         fetchProducts();
     }, []);
 
     const addToCart = (itemId) => {
+        if (!isLoggedIn) {
+            window.location.href = '/login';
+            return;
+        }
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
         if (localStorage.getItem('auth-token')) {
-            fetch('https://everearth-backend.onrender.com/addtocart', {
+            fetch('http://localhost:4000/addtocart', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -66,15 +59,28 @@ const ShopContextProvider = (props) => {
                 },
                 body: JSON.stringify({ "itemId": itemId }),
             })
-                .then((response) => response.json())
-                .then((data) => console.log(data));
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text().then(text => text ? JSON.parse(text) : {});
+                })
+                .then((data) => console.log('Added to cart:', data))
+                .catch((error) => {
+                    console.error('Error adding to cart:', error);
+                    // Cart state is already updated, so we don't need to revert it
+                });
         }
     };
 
     const removeFromCart = (itemId) => {
+        if (!isLoggedIn) {
+            window.location.href = '/login';
+            return;
+        }
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
         if (localStorage.getItem('auth-token')) {
-            fetch('https://everearth-backend.onrender.com/removefromcart', {
+            fetch('http://localhost:4000/removefromcart', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -83,8 +89,17 @@ const ShopContextProvider = (props) => {
                 },
                 body: JSON.stringify({ "itemId": itemId }),
             })
-                .then((response) => response.json())
-                .then((data) => console.log(data));
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text().then(text => text ? JSON.parse(text) : {});
+                })
+                .then((data) => console.log('Removed from cart:', data))
+                .catch((error) => {
+                    console.error('Error removing from cart:', error);
+                    // Cart state is already updated, so we don't need to revert it
+                });
         }
     };
 
@@ -110,14 +125,12 @@ const ShopContextProvider = (props) => {
     };
 
     const contextValue = {
+        getTotalCartItems,
+        getTotalCartAmount,
         all_product,
         cartItems,
-        loading,
-        error,
         addToCart,
-        removeFromCart,
-        getTotalCartAmount,
-        getTotalCartItems
+        removeFromCart
     };
 
     return (

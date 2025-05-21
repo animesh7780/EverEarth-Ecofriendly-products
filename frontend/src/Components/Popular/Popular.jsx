@@ -9,9 +9,18 @@ const Popular = () => {
     const [popular_product, setPopular_product] = useState([]);
 
     useEffect(() => {
-        fetch('https://everearth-backend.onrender.com/popular')
-            .then((response) => response.json())
-            .then((data) => setPopular_product(data));
+        fetch('http://localhost:4000/popular')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => setPopular_product(data))
+            .catch((error) => {
+                console.error('Error fetching popular products:', error);
+                setPopular_product([]);
+            });
     }, [])
 
     return (

@@ -1,68 +1,55 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CSS/ShopCategory.css';
-import { ShopContext } from '../Context/ShopContext';
 import dropdown_icon from '../Components/Assets/dropdown_icon.png';
 import Item from '../Components/Item/Item';
 
-export const ShopCategory = (props) => { 
-    const { all_product, loading, error } = useContext(ShopContext);
+export const ShopCategory = (props) => {
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    // Ensure all_product is an array and category is lowercase
-    const products = Array.isArray(all_product) ? all_product : [];
-    const currentCategory = props.category.toLowerCase();
+    useEffect(() => {
+        const fetchCategoryProducts = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch(`http://localhost:4000/products/${props.category}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                setProducts(data);
+                setError(null);
+            } catch (err) {
+                console.error('Error fetching category products:', err);
+                setError('Failed to load products');
+                setProducts([]);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    // Filter products by category
-    const categoryProducts = products.filter(item => 
-        item && item.category === currentCategory
-    );
+        fetchCategoryProducts();
+    }, [props.category]);
 
-    console.log('Category:', currentCategory);
-    console.log('All products:', products);
-    console.log('Filtered products:', categoryProducts);
-
-    if (loading) {
-        return (
-            <div className='Shop-Category'>
-                <img className='banner' src={props.banner} alt='' />
-                <div className='loading'>Loading products...</div>
-            </div>
-        );
-    }
-
-    if (error) {
-        return (
-            <div className='Shop-Category'>
-                <img className='banner' src={props.banner} alt='' />
-                <div className='error'>{error}</div>
-            </div>
-        );
-    }
-
-    if (!Array.isArray(all_product)) {
-        return (
-            <div className='Shop-Category'>
-                <img className='banner' src={props.banner} alt='' />
-                <div className='error'>Unable to load products. Please try again.</div>
-            </div>
-        );
-    }
+    if (loading) return <div className='loading'>Loading...</div>;
+    if (error) return <div className='error'>{error}</div>;
 
     return (
         <div className='Shop-Category'>
-            <img className='banner' src={props.banner} alt='' />
+            <img src={props.banner} alt='' /> {/* Use props.banner */}
             <div className='shopcategory-indexSort'>
                 <p>
-                    <span>Showing {categoryProducts.length}</span> products in {currentCategory}
+                    <span>Showing 1-12</span> out of 36 products
                 </p>
                 <div className='ShopCategory-sort'>
                     Sort by <img src={dropdown_icon} alt='' />
                 </div>
             </div>
             <div className='ShopCategory-products'>
-                {categoryProducts.length > 0 ? (
-                    categoryProducts.map((item) => (
+                {products.length > 0 ? (
+                    products.map((item, i) => (
                         <Item
-                            key={item.id}
+                            key={i}
                             id={item.id}
                             name={item.name}
                             image={item.image}
@@ -71,9 +58,7 @@ export const ShopCategory = (props) => {
                         />
                     ))
                 ) : (
-                    <div className='no-products'>
-                        <p>No products available in {currentCategory}</p>
-                    </div>
+                    <p>No products available in this category</p>
                 )}
             </div>
         </div>

@@ -7,9 +7,13 @@ export const NewCollections = () => {
 
     const [new_collection, setNew_collection] = useState([]);
     useEffect(() => {
-        fetch('https://everearth-backend.onrender.com/newcollection')
+        fetch('http://localhost:4000/newcollections')
             .then((response) => response.json())
-            .then((data) => setNew_collection(data));
+            .then((data) => setNew_collection(data))
+            .catch((error) => {
+                console.error('Error fetching new collections:', error);
+                setNew_collection([]);
+            });
     }, [])
     return (
         <div className='newcollections'>

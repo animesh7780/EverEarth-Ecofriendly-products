@@ -27,7 +27,7 @@ const AddProduct = () => {
         formData.append('product', image);
 
         try {
-            const response = await fetch('https://everearth-backend.onrender.com/upload', {
+            const response = await fetch('http://localhost:4000/upload', {
                 method: 'POST',
                 body: formData
             });
@@ -38,7 +38,7 @@ const AddProduct = () => {
                 const updatedProduct = { ...productDetails, image: responseData.image_url };
                 console.log(updatedProduct);
 
-                const addProductResponse = await fetch('https://everearth-backend.onrender.com/addproduct', {
+                const addProductResponse = await fetch('http://localhost:4000/addproduct', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -82,7 +82,7 @@ const AddProduct = () => {
                 <select value={productDetails.category} onChange={changeHandler} name="category" className='add-product-selector' id="">
                     <option value="EveryDay">EveryDay</option>
                     <option value="Toiletries">Toiletries</option>
-                    <option value="Greendevices">GreenDevices</option>
+                    <option value="Greendevices">Greendevices</option>
                     <option value="Niche">Niche</option>
                     <option value="Furniture">Furniture</option>
                 </select>

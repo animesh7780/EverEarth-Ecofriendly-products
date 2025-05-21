@@ -82,18 +82,34 @@
     cursor: pointer;
 }
 
-.productdisplay-right button {
-    padding: 20px, 40px;
-    height: 50px;
+.productdisplay-right button{
+    padding: 20px 40px;
     width: 200px;
     font-size: 16px;
-    font-weight: 16px;
+    font-weight: 600;
     color: white;
     background: #ff4141;
     margin-bottom: 40px;
     border: none;
     outline: none;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.productdisplay-right button:hover {
+    background: #ff2929;
+}
+
+.login-to-cart {
+    text-decoration: none;
+}
+
+.login-to-cart button {
+    background: #2e8b57;
+}
+
+.login-to-cart button:hover {
+    background: #246b43;
 }
 
 .productdisplay-right-category span {

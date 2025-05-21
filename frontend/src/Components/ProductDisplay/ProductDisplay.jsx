@@ -3,10 +3,12 @@ import './ProductDisplay.css'
 import star_icon from '../Assets/star_icon.png'
 import star_dull_icon from '../Assets/star_dull_icon.png'
 import { ShopContext } from '../../Context/ShopContext'
+import { Link } from 'react-router-dom'
 
 export const ProductDisplay = (props) => {
     const { product } = props;
     const { addToCart } = useContext(ShopContext);
+    const isLoggedIn = !!localStorage.getItem('auth-token');
     return (
         <div className='productdisplay'>
             <div className='productdisplay-left'>
@@ -49,7 +51,13 @@ export const ProductDisplay = (props) => {
                         <div>XL</div>
                         <div>XXL</div>
                     </div> */}
+                    {isLoggedIn ? (
                     <button onClick={() => { addToCart(product.id) }}>ADD TO CART</button>
+                ) : (
+                    <Link to="/login" className="login-to-cart">
+                        <button>LOGIN TO ADD TO CART</button>
+                    </Link>
+                )}
                     <p className='productdisplay-right-category'><span>Category:</span>Bamboo, Green</p>
                     <p className='productdisplay-right-category'><span>Tags:</span>Modern,Latest</p>
                 </div>
