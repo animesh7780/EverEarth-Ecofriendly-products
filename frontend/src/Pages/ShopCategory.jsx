@@ -12,7 +12,7 @@ export const ShopCategory = (props) => {
         const fetchCategoryProducts = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(`http://localhost:4000/products/${props.category}`);
+                const response = await fetch(`https://everearth-backend.onrender.com/products/${props.category}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
