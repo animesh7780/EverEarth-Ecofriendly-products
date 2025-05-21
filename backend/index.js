@@ -19,8 +19,9 @@ cloudinary.config({
 
 app.use(express.json());
 app.use(cors({
-    origin: ['https://everearth-frontend1.onrender.com', 'http://localhost:3000'],
-    credentials: true
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'auth-token']
 }));
 
 // Database Connection With MongoDB
@@ -363,11 +364,29 @@ app.post('/removefromcart', fetchUser, async (req, res) => {
 });
 
 
-app.listen(port, (error) => {
-    if (!error) {
-        console.log("Server running on port " + port)
+// Global error handling middleware
+app.use((err, req, res, next) => {
+    console.error('Global error handler:', err);
+    res.status(500).json({
+        success: false,
+        error: 'Internal Server Error',
+        message: err.message
+    });
+});
+
+// Improved server startup
+const startServer = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI);
+        console.log('Connected to MongoDB');
+        
+        app.listen(port, () => {
+            console.log(`Server running on port ${port}`);
+        });
+    } catch (error) {
+        console.error('Server startup error:', error);
+        process.exit(1);
     }
-    else {
-        console.log("Error :" + error)
-    }
-})
+};
+
+startServer();
