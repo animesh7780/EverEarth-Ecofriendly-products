@@ -18,7 +18,10 @@ cloudinary.config({
 });
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: ['https://everearth-frontend1.onrender.com', 'http://localhost:3000'],
+    credentials: true
+}));
 
 // Database Connection With MongoDB
 mongoose.connect(process.env.MONGO_URI)
