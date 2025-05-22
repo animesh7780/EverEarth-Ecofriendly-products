@@ -18,16 +18,20 @@ cloudinary.config({
 });
 
 app.use(express.json());
+// Enable CORS for all origins during development
 app.use(cors({
-    origin: [
-        'https://shiny-travesseiro-1f3dff.netlify.app',  // Admin panel
-        'https://everearth-eco-shop.netlify.app',         // Frontend (assuming this is your frontend URL)
-        'http://localhost:3000',                          // Local frontend development
-        'http://localhost:5173'                           // Local admin development
-    ],
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
 }));
+
+// Add CORS headers to all responses
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Accept');
+    next();
+});
 
 // Database Connection With MongoDB
 mongoose.connect(process.env.MONGO_URI)
@@ -38,6 +42,9 @@ mongoose.connect(process.env.MONGO_URI)
     });
 
 //API creation
+
+// Handle OPTIONS requests
+app.options('*', cors());
 
 app.get("/", (req, res) => {
     res.send("Express app is running")
