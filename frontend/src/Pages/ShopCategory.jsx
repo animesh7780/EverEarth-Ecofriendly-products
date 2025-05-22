@@ -12,15 +12,43 @@ export const ShopCategory = (props) => {
         const fetchCategoryProducts = async () => {
             try {
                 setLoading(true);
+                console.log('Fetching products for category:', props.category);
                 const response = await fetch(`https://everearth-backend.onrender.com/products/${props.category}`);
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
+
                 const data = await response.json();
+                console.log('Category products raw data:', data);
+
+                if (!Array.isArray(data)) {
+                    console.error('Data is not an array:', data);
+                    throw new Error('Invalid data format');
+                }
+
+                // Validate each item has required fields
+                const validData = data.every(item => 
+                    item && 
+                    typeof item.id !== 'undefined' &&
+                    typeof item.name === 'string' &&
+                    typeof item.image === 'string' &&
+                    typeof item.new_price !== 'undefined' &&
+                    typeof item.old_price !== 'undefined'
+                );
+
+                if (!validData) {
+                    console.error('Some items are missing required fields');
+                    throw new Error('Invalid item data');
+                }
+
+                console.log('Data validation passed, setting products...');
                 setProducts(data);
                 setError(null);
             } catch (err) {
-                console.error('Error fetching category products:', err);
+                console.error('Error in fetchCategoryProducts:', err);
                 setError('Failed to load products');
                 setProducts([]);
             } finally {

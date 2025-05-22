@@ -2,9 +2,7 @@
 .newcollections {
     padding: 50px 20px;
     text-align: center;
-    opacity: 0;
-    /* Initial opacity set to 0 */
-    animation: fadeIn 0.5s forwards;
+    opacity: 1;
 }
 
 .newcollections h1 {
@@ -26,9 +24,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    opacity: 0;
-    /* Initial opacity set to 0 */
-    animation: slideIn 0.5s forwards;
+    opacity: 1;
 }
 
 /* Animation Keyframes */

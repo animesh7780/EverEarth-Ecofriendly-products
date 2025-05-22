@@ -42,9 +42,19 @@ EverEarth is a full-stack e-commerce platform specializing in eco-friendly produ
 - **Deployment**: Netlify (Frontend & Admin), Render.com (Backend)
 
 ## Deployment URLs
-- Frontend: https://everearth-eco-shop.netlify.app
+- Frontend: https://stellar-custard-66cc51.netlify.app
 - Admin Panel: https://shiny-travesseiro-1f3dff.netlify.app
 - Backend API: https://everearth-backend.onrender.com
+
+### API Endpoints
+- `GET /products/:category` - Get products by category
+- `GET /newcollections` - Get latest 8 products
+- `GET /popular` - Get latest 8 popular products
+- `GET /allproducts` - Get all products
+- `POST /upload` - Upload product images
+- `POST /addproduct` - Add new product
+- `POST /removeproduct` - Remove product
+- `GET /test-db` - Check database connection and product count
 
 ## Key Features
 1. **Product Management**

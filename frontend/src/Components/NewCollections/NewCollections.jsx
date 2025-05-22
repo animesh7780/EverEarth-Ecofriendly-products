@@ -9,25 +9,54 @@ export const NewCollections = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     useEffect(() => {
-        setLoading(true);
-        fetch('https://everearth-backend.onrender.com/newcollections')
-            .then(async (response) => {
+        const fetchNewCollections = async () => {
+            try {
+                setLoading(true);
+                console.log('Fetching new collections...');
+                const response = await fetch('https://everearth-backend.onrender.com/newcollections');
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+                
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
+
                 const data = await response.json();
-                console.log('New collections data:', data);
+                console.log('New collections raw data:', data);
+                
+                if (!Array.isArray(data)) {
+                    console.error('Data is not an array:', data);
+                    throw new Error('Invalid data format');
+                }
+
+                // Validate each item has required fields
+                const validData = data.every(item => 
+                    item && 
+                    typeof item.id !== 'undefined' &&
+                    typeof item.name === 'string' &&
+                    typeof item.image === 'string' &&
+                    typeof item.new_price !== 'undefined' &&
+                    typeof item.old_price !== 'undefined'
+                );
+
+                if (!validData) {
+                    console.error('Some items are missing required fields');
+                    throw new Error('Invalid item data');
+                }
+
+                console.log('Data validation passed, setting new collections...');
                 setNew_collection(data);
                 setError(null);
-            })
-            .catch((error) => {
-                console.error('Error fetching new collections:', error);
+            } catch (error) {
+                console.error('Error in fetchNewCollections:', error);
                 setError(error.message);
                 setNew_collection([]);
-            })
-            .finally(() => {
+            } finally {
                 setLoading(false);
-            });
+            }
+        };
+
+        fetchNewCollections();
     }, [])
     return (
         <div className='newcollections'>
