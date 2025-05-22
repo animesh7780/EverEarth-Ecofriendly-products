@@ -50,6 +50,39 @@ app.get("/", (req, res) => {
     res.send("Express app is running")
 })
 
+// Simple test route
+app.get("/test", (req, res) => {
+    res.json({
+        status: 'ok',
+        message: 'Test route working',
+        env: {
+            mongoUri: process.env.MONGO_URI ? 'Present' : 'Missing',
+            port: process.env.PORT,
+            cloudName: process.env.CLOUDINARY_CLOUD_NAME ? 'Present' : 'Missing'
+        }
+    })
+})
+
+// Test route for MongoDB connection
+app.get("/test-db", async (req, res) => {
+    try {
+        const count = await Product.countDocuments();
+        const dbState = mongoose.connection.readyState;
+        const dbStatus = {
+            connected: dbState === 1,
+            state: dbState,
+            productCount: count,
+            mongoUri: process.env.MONGO_URI ? 'Present' : 'Missing'
+        };
+        res.json(dbStatus);
+    } catch (error) {
+        res.status(500).json({
+            error: error.message,
+            mongoUri: process.env.MONGO_URI ? 'Present' : 'Missing'
+        });
+    }
+})
+
 // Configure multer for memory storage
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -189,6 +222,10 @@ app.get('/newcollections', async (req, res) => {
     try {
         let products = await Product.find({}).sort({ date: -1 }).limit(8);
         console.log("NewCollection Fetched");
+        res.setHeader('Content-Type', 'application/json');
+        if (!products || products.length === 0) {
+            return res.status(404).json({ message: 'No products found' });
+        }
         res.json(products);
     } catch (error) {
         console.error('Error fetching new collections:', error);
@@ -200,8 +237,13 @@ app.get('/newcollections', async (req, res) => {
 app.get('/products/:category', async (req, res) => {
     try {
         const category = req.params.category;
+        console.log('Category requested:', category);
         let products = await Product.find({ category: category });
-        console.log(`Products fetched for category: ${category}`);
+        console.log(`Products fetched for category: ${category}, count:`, products.length);
+        res.setHeader('Content-Type', 'application/json');
+        if (!products || products.length === 0) {
+            return res.status(404).json({ message: `No products found for category: ${category}` });
+        }
         res.json(products);
     } catch (error) {
         console.error('Error fetching category products:', error);
