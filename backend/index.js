@@ -18,7 +18,16 @@ cloudinary.config({
 });
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: [
+        'https://shiny-travesseiro-1f3dff.netlify.app',  // Admin panel
+        'https://everearth-eco-shop.netlify.app',         // Frontend (assuming this is your frontend URL)
+        'http://localhost:3000',                          // Local frontend development
+        'http://localhost:5173'                           // Local admin development
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
+}));
 
 // Database Connection With MongoDB
 mongoose.connect(process.env.MONGO_URI)
