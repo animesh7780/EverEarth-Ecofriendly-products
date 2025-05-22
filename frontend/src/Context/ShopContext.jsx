@@ -22,7 +22,7 @@ const ShopContextProvider = (props) => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('https://everearth-backend.onrender.com/allproducts');
+                const response = await fetch('http://localhost:4000/allproducts');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -50,7 +50,7 @@ const ShopContextProvider = (props) => {
         }
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
         if (localStorage.getItem('auth-token')) {
-            fetch('https://everearth-backend.onrender.com/addtocart', {
+            fetch('http://localhost:4000/addtocart', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -80,7 +80,7 @@ const ShopContextProvider = (props) => {
         }
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
         if (localStorage.getItem('auth-token')) {
-            fetch('https://everearth-backend.onrender.com/removefromcart', {
+            fetch('http://localhost:4000/removefromcart', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',

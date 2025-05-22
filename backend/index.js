@@ -18,11 +18,7 @@ cloudinary.config({
 });
 
 app.use(express.json());
-app.use(cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'auth-token']
-}));
+app.use(cors());
 
 // Database Connection With MongoDB
 mongoose.connect(process.env.MONGO_URI)
@@ -364,29 +360,11 @@ app.post('/removefromcart', fetchUser, async (req, res) => {
 });
 
 
-// Global error handling middleware
-app.use((err, req, res, next) => {
-    console.error('Global error handler:', err);
-    res.status(500).json({
-        success: false,
-        error: 'Internal Server Error',
-        message: err.message
-    });
-});
-
-// Improved server startup
-const startServer = async () => {
-    try {
-        await mongoose.connect(process.env.MONGO_URI);
-        console.log('Connected to MongoDB');
-        
-        app.listen(port, () => {
-            console.log(`Server running on port ${port}`);
-        });
-    } catch (error) {
-        console.error('Server startup error:', error);
-        process.exit(1);
+app.listen(port, (error) => {
+    if (!error) {
+        console.log("Server running on port " + port)
     }
-};
-
-startServer();
+    else {
+        console.log("Error :" + error)
+    }
+})
