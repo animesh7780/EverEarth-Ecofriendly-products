@@ -221,7 +221,7 @@ app.get('/popular', async (req, res) => {
 app.get('/newcollections', async (req, res) => {
     try {
         let products = await Product.find({}).sort({ date: -1 }).limit(8);
-        console.log("NewCollection Fetched");
+        console.log("New Collections Fetched, count:", products.length);
         res.setHeader('Content-Type', 'application/json');
         if (!products || products.length === 0) {
             return res.status(404).json({ message: 'No products found' });
